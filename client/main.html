@@ -5,10 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
     <link rel="stylesheet" href="./assets/style.css" />
-    <title>Kanban App</title>
+    <title>Draft Layout</title>
   </head>
   <body>
+    <!-- login-->
     <section>
+      <div class="row justify-content-center p-5" style="margin-top: 120px;">
+        <div class="w-25 border shadow-lg">
+          <h1 class="text-center pt-5">Kanban</h1>
+          <h4 class="text-center" style="color: rgb(112, 110, 110)"><b>Login</b></h4>
+          <form>
+            <div class="m-4 mt-2">
+              <label for="email-login" class="form-label">Email</label>
+              <input type="email" class="form-control" placeholder="Email Address" v-model="loginEmail" />
+            </div>
+            <div class="m-4">
+              <label for="password-login" class="form-label">Password</label>
+              <input type="password" class="form-control" placeholder="Password" v-model="loginPassword" />
+            </div>
+            <div class="m-4">
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+              <button type="submit" class="btn btn-warning w-100 ">Register</button>
+              </div>
+            </div>
+            <div class="m-5 text-center">
+              <p>OR Login with Google Account</p>
+              <button type="submit" class="btn btn-primary">Google Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!--End login-->
+
+    <!--Register-->
+    <section>
+      <div class="row justify-content-center p-5" style="margin-top: 120px;">
+        <div class="w-25 border shadow-lg">
+          <h1 class="text-center pt-5">Kanban</h1>
+          <h4 class="text-center" style="color: rgb(112, 110, 110)"><b>Register</b></h4>
+          <form>
+            <div class="m-4 mt-2">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" />
+            </div>
+            <div class="m-4">
+              <label for="email-register" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email-register" />
+            </div>
+            <div class="m-4">
+              <label for="password-register" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password-register" />
+            </div>
+            <div class="m-4">
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-warning w-100">Register</button>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+              </div>
+            </div>
+            <div class="m-5 text-center">
+              <p>OR Login with Google Account</p>
+              <button type="submit" class="btn btn-primary">Google Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!--End register-->
+    <!--Home -->
+     <section>
       <nav class="navbar navbar-expand-lg w-100">
         <div class="d-flex justify-content-between w-100 px-2">
           <button class="btn btn-light">Log out</button>
@@ -18,63 +84,39 @@
         </div>
       </nav>
     </section>
+
     <!-- Kanban board-->
     <section>
       <div class="row">
         <div class="my-4 text-center"><h2>Kanban Application</h2></div>
       </div>
       <div class="d-flex justify-content-start" style="margin: 0px 250px 100px; height: 70vh">
-        <div class="col-3 bingkai mx-1 overflow-auto p-3">
-          <h4 class="px-4">Backlog</h4>
-          <!-- <div class="col-12 p-2"> -->
-            <div class="card col-12 my-3 shadow-lg rounded">
-              <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <h6 class="card-subtitle my-2 text-muted">by: username</h6>
-                <h6 class="card-subtitle my-2 text-muted">last Updated:</h6>
-                <div class="d-flex justify-content-around mt-3">
-                  <button type="button" class="btn btn-warning px-4" data-bs-toggle="modal" data-bs-target="#edit-task-modal">
-                    Edit
-                  </button>
-                  <button type="button" class="btn btn-warning">Delete</button>
-                </div>
-                <!-- <div class="d-flex justify-content-around">
-                  <button type="button" class="btn"><i class="far fa-arrow-alt-circle-left fa-2x"></i></button>
-                  <button type="button" class="btn"><i class="far fa-arrow-alt-circle-right fa-2x"></i></button>
-                </div> -->
+        <div class="col-3 category mx-1 overflow-auto p-3">
+          <h4 class="text-center">Backlog</h4>
+          <!--Card-->
+          <div class="card col-12 my-3 shadow-lg rounded">
+            <div class="card-body">
+              <h5 class="card-title">Title</h5>
+              <h6 class="card-subtitle my-2 text-muted">by: username</h6>
+              <h6 class="card-subtitle my-2 text-muted">last Updated:</h6>
+              <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-primary-outline" data-bs-toggle="modal" data-bs-target="#edit-task-modal"> <i class="fas fa-marker"></i></button>
+                <button type="button" class="btn btn-primary-outline"><i class="fas fa-trash"></i></button>
               </div>
             </div>
-            <!---->
-            <div class="card col-12 my-3 shadow-lg rounded ">
-              <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <h6 class="card-subtitle my-2 text-muted">by: username</h6>
-                <h6 class="card-subtitle my-2 text-muted">last Updated:</h6>
-                <div class="d-flex justify-content-around mt-3">
-                  <button type="button" class="btn btn-warning px-4" data-bs-toggle="modal" data-bs-target="#edit-task-modal">
-                    Edit
-                  </button>
-                  <button type="button" class="btn btn-warning">Delete</button>
-                </div>
-                <!-- <div class="d-flex justify-content-around">
-                  <button type="button" class="btn"><i class="far fa-arrow-alt-circle-left fa-2x"></i></button>
-                  <button type="button" class="btn"><i class="far fa-arrow-alt-circle-right fa-2x"></i></button>
-                </div> -->
-              </div>
-            </div>
-          <!-- </div> -->
+          </div>
+          <!--End Card-->
         </div>
-        <!---->
-        <div class="col-3 bingkai mx-1 overflow-auto p-3">
-          <h4 class="px-4">Todo</h4>
+        <div class="col-3 category mx-1 overflow-auto p-3">
+          <h4 class="text-center">Todo</h4>
           <div class="col-12 p-2"></div>
         </div>
-        <div class="col-3 bingkai mx-1 overflow-auto p-3">
-          <h4 class="px-4">Doing</h4>
+        <div class="col-3 category mx-1 overflow-auto p-3">
+          <h4 class="text-center">Doing</h4>
           <div class="col-12 p-2"></div>
         </div>
-        <div class="col-3 bingkai mx-1 overflow-auto p-3">
-          <h4 class="px-4">Done</h4>
+        <div class="col-3 category mx-1 overflow-auto p-3">
+          <h4 class="text-center">Done</h4>
           <div class="col-12 p-2"></div>
         </div>
         <!---->
@@ -143,7 +185,13 @@
     </div>
   </div>
 </div>
-    <!--end modal edit-->
+<!--end modal edit-->
+<!--End Home-->
+    
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/3adeed8aed.js" crossorigin="anonymous"></script>
   </body>

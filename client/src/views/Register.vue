@@ -7,15 +7,15 @@
           <form>
             <div class="m-4 mt-2">
               <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Username" />
+              <input type="text" class="form-control" id="username" />
             </div>
             <div class="m-4">
               <label for="email-register" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email-register" placeholder="Email Address" />
+              <input type="email" class="form-control" id="email-register" />
             </div>
             <div class="m-4">
               <label for="password-register" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password-register" placeholder="Password" />
+              <input type="password" class="form-control" id="password-register" />
             </div>
             <div class="m-4">
               <div class="d-flex justify-content-center">
@@ -35,13 +35,10 @@
 
 <script>
 export default {
-  name: 'Register'
+  name: "Register"
 }
 </script>
 
-<style scoped>
-.shadow-lg {
-   background-color: white;
-}
+<style>
 
 </style>
