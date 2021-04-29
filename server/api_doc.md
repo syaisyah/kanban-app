@@ -42,7 +42,7 @@ Required Authorization: No
 
 ```
 {
-  username: "<username from user>",
+  full_name: "<user full_name >",
   email:"<user email>",
   password: "<user password>",
 }
@@ -58,7 +58,6 @@ Required Authorization: No
   "message": "create new user success",
   "id": "<user id from system",
   "email": "<user email >",
-  "username": "<username from user>"
 }
 ```
 

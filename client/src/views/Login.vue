@@ -6,17 +6,17 @@
           <h4 class="text-center" style="color: rgb(112, 110, 110)"><b>Login</b></h4>
           <form>
             <div class="m-4 mt-2">
-              <label for="email-login" class="form-label">Email</label>
+              <label for="emailLogin" class="form-label">Email</label>
               <input type="email" class="form-control" placeholder="Email Address" v-model="emailLogin" />
             </div>
             <div class="m-4">
-              <label for="password-login" class="form-label">Password</label>
+              <label for="passwordLogin" class="form-label">Password</label>
               <input type="password" class="form-control" placeholder="Password" v-model="passwordLogin" />
             </div>
             <div class="m-4">
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary w-100" @click.prevent="login">Login</button>
-                <button type="submit" class="btn btn-warning w-100">Register</button>
+                <button type="submit" class="btn btn-warning w-100" @click.prevent="showFormRegister">Register</button>
               </div>
             </div>
             <div class="m-5 text-center">
@@ -42,6 +42,9 @@ export default {
    login() {
      const user = { email: this.emailLogin, password: this.passwordLogin }
      this.$emit('emitLogin', user)
+   },
+   showFormRegister() {
+     this.$emit('emitFormRegister')
    }
   }
 }

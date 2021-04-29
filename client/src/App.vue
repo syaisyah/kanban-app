@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Login v-if="!isLogin && !isRegister" @emitLogin="login"></Login>
-    <Register v-else-if="isRegister && !isLogin"></Register>
-    <Home v-else-if="isLogin"></Home>
+    <Login v-if="page === 'login'" @emitLogin="login" @emitFormRegister="showFormRegister"></Login>
+    <Register v-else-if="page === 'register'" @emitRegister="register" @emitFormLogin="showFormLogin"></Register>
+    <Home v-else-if="page === 'home'"></Home>
   </div>
 </template>
 
@@ -22,8 +22,7 @@ export default {
   },
   data () {
     return {
-      isLogin: false,
-      isRegister: false
+     page: 'login'
     }
   },
 
@@ -34,11 +33,18 @@ export default {
   methods: {
     checkLocalStroge() {
       if (localStorage.getItem("access_token")) {
-        this.isLogin = true
+        this.page = 'home'
       } else {
-        this.isLogin = false
+        this.page = 'login'
       }
     },
+    showFormRegister() {
+      this.page = 'register'
+    },
+    showFormLogin() {
+      this.page = 'login'
+    },
+
     login(user) {
       console.log(user, 'masuk login')
       axios({
@@ -48,6 +54,11 @@ export default {
       })
       .then(({data}) => {
         localStorage.setItem('access_token', data.access_token)
+         Swal.fire(
+          'Login success!',
+          'You clicked the button!',
+          'success'
+        )
         this.checkLocalStroge()
       })
       .catch(err => {
@@ -57,7 +68,30 @@ export default {
         this.email = "";
         this.password = "";
       })
+    },
+    register(user) {
+      const { full_name, email, password } = user;
+      const newUser = { full_name, email, password };
       
+      axios({
+        url: baseUrl + '/users/register',
+        method: "POST",
+        data: newUser
+      })
+      .then(response => {
+        Swal.fire(
+          'Register success! Login please',
+          'You clicked the button!',
+          'success'
+        )
+        this.page = 'login'
+      })
+      .catch(err => console.log(err))
+      .finally(_ => {
+        this.full_name = ''; 
+        this.email= '';
+        this.password = '';
+      })
     }
   }
 }

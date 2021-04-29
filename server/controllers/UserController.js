@@ -7,8 +7,8 @@ const { OAuth2Client } = require('google-auth-library');
 
 class UserController {
   static register(req, res, next) {
-    const {name, email, password } = req.body
-    const newUser = { name, email, password }
+    const { full_name, email, password } = req.body
+    const newUser = { full_name, email, password }
     User.create(newUser)
       .then(user => {
         res.status(201).json({ message: 'create new user success', id: user.id, email: user.email })
@@ -18,7 +18,6 @@ class UserController {
 
   static login(req, res, next) {
     const { email, password } = req.body;
-    console.log(req.body, '>>>>>>>> login req.nbody')
     User.findOne({ where: { email } })
       .then(user => {
         if (user && comparePassword(password, user.password)) {
