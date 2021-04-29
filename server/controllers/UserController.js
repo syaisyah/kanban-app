@@ -18,6 +18,7 @@ class UserController {
 
   static login(req, res, next) {
     const { email, password } = req.body;
+    console.log(req.body, '>>>>>>>> login req.nbody')
     User.findOne({ where: { email } })
       .then(user => {
         if (user && comparePassword(password, user.password)) {

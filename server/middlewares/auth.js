@@ -5,7 +5,6 @@ const errorHandler = require('./errorHandler')
 
 
 const authentication = (req, res, next) => {
-  console.log('masuk authentication')
   try {
     let decode = verifyToken(req.headers.access_token)
     User.findByPk(+decode.id)

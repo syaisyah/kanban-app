@@ -7,16 +7,16 @@
           <form>
             <div class="m-4 mt-2">
               <label for="email-login" class="form-label">Email</label>
-              <input type="email" class="form-control" placeholder="Email Address" v-model="loginEmail" />
+              <input type="email" class="form-control" placeholder="Email Address" v-model="emailLogin" />
             </div>
             <div class="m-4">
               <label for="password-login" class="form-label">Password</label>
-              <input type="password" class="form-control" placeholder="Password" v-model="loginPassword" />
+              <input type="password" class="form-control" placeholder="Password" v-model="passwordLogin" />
             </div>
             <div class="m-4">
               <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary w-100">Login</button>
-              <button type="submit" class="btn btn-warning w-100 ">Register</button>
+                <button type="submit" class="btn btn-primary w-100" @click.prevent="login">Login</button>
+                <button type="submit" class="btn btn-warning w-100">Register</button>
               </div>
             </div>
             <div class="m-5 text-center">
@@ -31,7 +31,19 @@
 
 <script>
 export default {
-  name: "Login"
+  name: "Login",
+  data () {
+    return {
+      emailLogin: '',
+      passwordLogin: '',
+    }
+  },
+  methods: {
+   login() {
+     const user = { email: this.emailLogin, password: this.passwordLogin }
+     this.$emit('emitLogin', user)
+   }
+  }
 }
 </script>
 
