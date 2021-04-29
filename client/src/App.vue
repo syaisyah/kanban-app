@@ -25,5 +25,10 @@ export default {
 </script>
 
 <style>
-
+body {
+  background-image: url('../assets/bg-1.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 </style>
