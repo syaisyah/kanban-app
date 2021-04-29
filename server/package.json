@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "kanban-application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon app.js",
+    "start": "node app.js",
+    "db:create:development": "NODE_ENV=development npx sequelize db:create",
+    "db:migrate:development": "NODE_ENV=development npx sequelize db:migrate",
+    "db:seed:development": "NODE_ENV=development npx sequelize db:seed:all"
+  },
+  "keywords": [],
+  "author": "siti aisyah",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "google-auth-library": "^7.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "sequelize-cli": "^6.2.0"
+  }
+}
