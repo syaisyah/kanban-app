@@ -1,8 +1,8 @@
 <template>
    <section>
-     <Navbar @emitModalAdd="showModalAdd"></Navbar>
+     <Navbar></Navbar>
      <KanbanBoard :dataTasks="dataTasks"></KanbanBoard>
-     <FormAdd v-if="isAddForm" ></FormAdd>
+     <FormAdd></FormAdd>
      <FormEdit></FormEdit>
    </section>
 </template>
@@ -25,14 +25,9 @@ export default {
       isAddForm: false
     }
   },
-  // created() {console.log(this.dataTasks, '>>>>>>>>>>>>created Home ')},
   props: ["dataTasks"],
   methods: {
-    showModalAdd() {
-      console.log(this.isAddForm, 'before hit showModalAdd Home ')
-      this.isAddForm = true
-      console.log(this.isAddForm, 'after hit showModalAdd Home ')
-    }
+   
   }
 }
 </script>

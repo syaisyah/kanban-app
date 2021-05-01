@@ -6,7 +6,7 @@
       class="btn btn-warning" 
       data-bs-toggle="modal" 
       data-bs-target="#add-task"
-      @click.prevent="showModalAdd"
+     
       >+ Create Task
       </button>
     </div>
@@ -26,10 +26,6 @@ export default {
       window.location.reload();
     },
 
-    showModalAdd() {
-      console.log('Navbar modal hit')
-      this.$emit('emitModalAdd')
-    }
   }
 }
 </script>
