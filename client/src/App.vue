@@ -5,7 +5,8 @@
     <Home 
       v-else-if="page === 'home'"
       :dataTasks="tasks"
-    ></Home>
+      @emitCreateTask="createTask"
+    ></Home> 
   </div>
 </template>
 
@@ -23,13 +24,12 @@ export default {
     Register,
     Login,
     Home,
-
+   
   },
   data () {
     return {
      page: 'login',
-     tasks: []
-    
+     tasks: [],
     }
   },
 
@@ -38,7 +38,6 @@ export default {
   },
 
   methods: {
-
     checkLocalStroge() {
       if (localStorage.getItem("access_token")) {
         this.page = 'home';
@@ -110,10 +109,32 @@ export default {
       })
       .then(({data}) => {
        this.tasks = data
-       console.log(this.tasks, '>>>>>>> fetchTasks')
       })
       .catch(err => console.log(err, 'from fetchTasks'))
     },
+
+    createTask(task) {
+      axios({
+        url: baseUrl + '/tasks',
+        method: "POST",
+        data: task,
+        headers: {access_token: localStorage.getItem('access_token')}
+      })
+      .then(response => {
+          Swal.fire(
+            'Create Task Success'
+          )
+        this.checkLocalStroge()
+        })
+      .catch(err => {
+        const {status, message } = err.response.data
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${status}(${err.response.statusText}) - ${message}`
+          })
+      })
+    }
   }
 }
 </script>

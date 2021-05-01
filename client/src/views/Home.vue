@@ -2,39 +2,31 @@
    <section>
      <Navbar></Navbar>
      <KanbanBoard :dataTasks="dataTasks"></KanbanBoard>
-     <FormAdd></FormAdd>
-     <FormEdit></FormEdit>
+     <ModalAdd @emitCreateTask="createTask"></ModalAdd>
    </section>
 </template>
 
 <script>
 import Navbar from '../components/Navbar';
 import KanbanBoard from '../components/KanbanBoard';
-import FormAdd from '../components/FormAdd';
-import FormEdit from '../components/FormEdit';
+import ModalAdd from '../components/ModalAdd'
 export default {
   name: "Home",
   components: {
     Navbar,
-    KanbanBoard,
-    FormAdd,
-    FormEdit
-  },
-  data () {
-    return {
-      isAddForm: false
-    }
+    KanbanBoard,    
+    ModalAdd,
   },
   props: ["dataTasks"],
   methods: {
-   
+    createTask(task) {
+      this.$emit('emitCreateTask', task)
+    }
   }
 }
 </script>
 
 <style scoped>
-nav {
-  background-color: rgb(113, 201, 207);
-}
+
 
 </style>

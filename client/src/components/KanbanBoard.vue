@@ -11,8 +11,6 @@
           <!--Card-->
           <KanbanCard 
             :filteredTask="filteredBackLog"
-            
-          
           ></KanbanCard>
           <!--End Card-->
         </div>
@@ -20,21 +18,18 @@
           <h4 class="text-center">Todo</h4>
             <KanbanCard 
             :filteredTask="filteredTodo"
-      
           ></KanbanCard>
         </div>
         <div class="col-3 category mx-1 overflow-auto p-3">
           <h4 class="text-center">Doing</h4>
            <KanbanCard 
             :filteredTask="filteredDoing"
-            
           ></KanbanCard>
         </div>
         <div class="col-3 category mx-1 overflow-auto p-3">
           <h4 class="text-center">Done</h4>
            <KanbanCard 
             :filteredTask="filteredDone"
-            
           ></KanbanCard>
         </div>
         <!---->

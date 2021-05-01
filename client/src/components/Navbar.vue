@@ -1,35 +1,39 @@
 <template>
-  <nav class="navbar navbar-expand-lg w-100">
-    <div class="d-flex justify-content-between w-100 px-2">
-      <button class="btn btn-light" @click.prevent="logout">Log out</button>
-      <button type="button" 
-      class="btn btn-warning" 
-      data-bs-toggle="modal" 
-      data-bs-target="#add-task"
-     
-      >+ Create Task
-      </button>
-    </div>
-  </nav>
+  <section>
+    <nav class="navbar navbar-expand-lg w-100">
+      <div class="d-flex justify-content-between w-100 px-2">
+        <button class="btn btn-light" @click.prevent="logout">Log out</button>
+        <b-button v-b-modal.modal-1 class="btn btn-warning">Add Task</b-button>
+        <!-- <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#AddTask" @click.prevent="show">Add</button> -->
+      </div>
+    </nav>
+  </section>
 </template>
 
 <script>
 export default {
   name: "Navbar",
+  components: {
+
+  },
   data () {
-    return {}
+   return {}
   },
   methods: {
     logout() {
       console.log('logout hit')
       localStorage.removeItem("access_token");
       window.location.reload();
+      
     },
 
   }
 }
 </script>
 
-<style>
+<style scoped>
+nav {
+  background-color: rgb(113, 201, 207);
+}
 
 </style>

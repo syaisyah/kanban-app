@@ -4,6 +4,7 @@ const errorHandler = require('../middlewares/errorHandler');
 
 class TaskController {
   static createTask(req, res, next) {
+    console.log(req.body, '>>>>>>>>>>>>>>>>>>>> req body')
     const UserId = req.logginUser.id
     const newTask = {
       title: req.body.title,
