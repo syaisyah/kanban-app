@@ -1,8 +1,11 @@
 <template>
    <section>
-     <Navbar></Navbar>
-     <KanbanBoard :dataTasks="dataTasks"></KanbanBoard>
-     <ModalAdd @emitCreateTask="createTask"></ModalAdd>
+      <Navbar></Navbar>
+      <KanbanBoard 
+       :dataTasks="dataTasks"
+       @emitDestroy="destroy"
+      ></KanbanBoard>
+      <ModalAdd @emitCreateTask="createTask"></ModalAdd>
    </section>
 </template>
 
@@ -21,6 +24,9 @@ export default {
   methods: {
     createTask(task) {
       this.$emit('emitCreateTask', task)
+    },
+    destroy(id) {
+      this.$emit('emitDestroy', id)
     }
   }
 }

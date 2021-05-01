@@ -11,6 +11,7 @@
           <!--Card-->
           <KanbanCard 
             :filteredTask="filteredBackLog"
+            @emitDestroy="destroy"
           ></KanbanCard>
           <!--End Card-->
         </div>
@@ -18,18 +19,21 @@
           <h4 class="text-center">Todo</h4>
             <KanbanCard 
             :filteredTask="filteredTodo"
+            @emitDestroy="destroy"
           ></KanbanCard>
         </div>
         <div class="col-3 category mx-1 overflow-auto p-3">
           <h4 class="text-center">Doing</h4>
            <KanbanCard 
             :filteredTask="filteredDoing"
+            @emitDestroy="destroy"
           ></KanbanCard>
         </div>
         <div class="col-3 category mx-1 overflow-auto p-3">
           <h4 class="text-center">Done</h4>
            <KanbanCard 
             :filteredTask="filteredDone"
+            @emitDestroy="destroy"
           ></KanbanCard>
         </div>
         <!---->
@@ -66,6 +70,11 @@ export default {
         (task) => task.category.toLowerCase() === "done"
       );
     },
+  },
+  methods: {
+    destroy(id) {
+      this.$emit('emitDestroy', id)
+    }
   }
 }
 </script>

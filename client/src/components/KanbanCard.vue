@@ -9,7 +9,7 @@
       <h6 class="card-subtitle my-2 text-muted">last Updated: {{ task.updatedAt.split("T")[0] }}</h6>
       <div class="d-flex justify-content-end my-0">
         <button type="button" class="btn btn-primary-outline" data-bs-toggle="modal" data-bs-target="#edit-task-modal"> <i class="fas fa-marker"></i></button>
-        <button type="button" class="btn btn-primary-outline"><i class="fas fa-trash"></i></button>
+        <button type="button" class="btn btn-primary-outline" @click.prevent="destroy(task.id)"><i class="fas fa-trash"></i></button>
       </div>
     </div>
   </div>
@@ -19,6 +19,11 @@
 export default {
   name: "KanbanCard",
   props: ["filteredTask"],
+  methods: {
+    destroy(id) {
+      this.$emit('emitDestroy', id)
+    }
+  }
 }
 </script>
 

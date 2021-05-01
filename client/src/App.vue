@@ -6,6 +6,7 @@
       v-else-if="page === 'home'"
       :dataTasks="tasks"
       @emitCreateTask="createTask"
+      @emitDestroy="destroy"
     ></Home> 
   </div>
 </template>
@@ -131,10 +132,47 @@ export default {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: `${status}(${err.response.statusText}) - ${message}`
-          })
+            text: `${status} (${err.response.statusText}) - ${message}`
+        })
       })
-    }
+    },
+
+    destroy(id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+      
+        axios({
+          url: baseUrl + '/tasks/' + id,
+          method: "DELETE",
+          headers: {access_token: localStorage.getItem('access_token')}
+        })
+        .then(response => {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+        )
+        this.checkLocalStroge()
+        })
+        .catch(err => {
+          const {status, message } = err.response.data
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${status} - ${message}`
+          })
+        })
+      }
+})
+    },
   }
 }
 </script>

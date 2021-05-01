@@ -32,7 +32,7 @@ function errorHandler(err, req, res, next) {
       statusCode = 400
       message = [`${err.msg}`]
       break;
-    case 'UnAuthorized':
+    case 'Forbidden - Access is denied':
       statusCode = 403
       message = [`${err.msg}`]
       break;
