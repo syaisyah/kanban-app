@@ -9,20 +9,33 @@
         <div class="col-3 category mx-1 overflow-auto p-3">
           <h4 class="text-center">Backlog</h4>
           <!--Card-->
-          <KanbanCard></KanbanCard>
+          <KanbanCard 
+            :filteredTask="filteredBackLog"
+            
+          
+          ></KanbanCard>
           <!--End Card-->
         </div>
         <div class="col-3 category mx-1 overflow-auto p-3">
           <h4 class="text-center">Todo</h4>
-          <div class="col-12 p-2"></div>
+            <KanbanCard 
+            :filteredTask="filteredTodo"
+      
+          ></KanbanCard>
         </div>
         <div class="col-3 category mx-1 overflow-auto p-3">
           <h4 class="text-center">Doing</h4>
-          <div class="col-12 p-2"></div>
+           <KanbanCard 
+            :filteredTask="filteredDoing"
+            
+          ></KanbanCard>
         </div>
         <div class="col-3 category mx-1 overflow-auto p-3">
           <h4 class="text-center">Done</h4>
-          <div class="col-12 p-2"></div>
+           <KanbanCard 
+            :filteredTask="filteredDone"
+            
+          ></KanbanCard>
         </div>
         <!---->
       </div>
@@ -35,6 +48,29 @@ export default {
   name: "KanbanBoard",
   components: {
     KanbanCard
+  },
+  props: ["dataTasks"],
+  computed: {
+    filteredBackLog() {
+      return this.dataTasks.filter(
+        (task) => task.category.toLowerCase() === "backlog"
+      );
+    },
+    filteredTodo() {
+      return this.dataTasks.filter(
+        (task) => task.category.toLowerCase() === "todo"
+      );
+    },
+    filteredDoing() {
+      return this.dataTasks.filter(
+        (task) => task.category.toLowerCase() === "doing"
+      );
+    },
+    filteredDone() {
+      return this.dataTasks.filter(
+        (task) => task.category.toLowerCase() === "done"
+      );
+    },
   }
 }
 </script>

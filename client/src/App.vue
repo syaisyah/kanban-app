@@ -2,15 +2,19 @@
   <div>
     <Login v-if="page === 'login'" @emitLogin="login" @emitFormRegister="showFormRegister"></Login>
     <Register v-else-if="page === 'register'" @emitRegister="register" @emitFormLogin="showFormLogin"></Register>
-    <Home v-else-if="page === 'home'"></Home>
+    <Home 
+      v-else-if="page === 'home'"
+      :dataTasks="tasks"
+    ></Home>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import Register from './views/Register';
 import Login from './views/Login';
 import Home from './views/Home';
-import axios from 'axios';
+
 const baseUrl = `http://localhost:3000`
 
 export default {
@@ -18,11 +22,14 @@ export default {
   components: {
     Register,
     Login,
-    Home
+    Home,
+
   },
   data () {
     return {
-     page: 'login'
+     page: 'login',
+     tasks: []
+    
     }
   },
 
@@ -31,9 +38,11 @@ export default {
   },
 
   methods: {
+
     checkLocalStroge() {
       if (localStorage.getItem("access_token")) {
-        this.page = 'home'
+        this.page = 'home';
+        this.fetchTasks()
       } else {
         this.page = 'login'
       }
@@ -44,7 +53,6 @@ export default {
     showFormLogin() {
       this.page = 'login'
     },
-
     login(user) {
       console.log(user, 'masuk login')
       axios({
@@ -92,7 +100,20 @@ export default {
         this.email= '';
         this.password = '';
       })
-    }
+    },
+
+    fetchTasks() {
+      axios({
+        url: baseUrl + '/tasks',
+        method: "GET",
+        headers: {access_token: localStorage.getItem('access_token')}
+      })
+      .then(({data}) => {
+       this.tasks = data
+       console.log(this.tasks, '>>>>>>> fetchTasks')
+      })
+      .catch(err => console.log(err, 'from fetchTasks'))
+    },
   }
 }
 </script>

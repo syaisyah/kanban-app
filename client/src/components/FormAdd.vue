@@ -31,7 +31,8 @@
 
 <script>
 export default {
-  name: "FormAdd"
+  name: "FormAdd",
+  methods: {}
 }
 </script>
 

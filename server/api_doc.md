@@ -449,7 +449,7 @@ id: integer
 ```
 {
   status: 401,
-  message: ['UnAuthenticated']
+  message: ['UnAuthenticated - You have not logged in']
 }
 ```
 
@@ -459,8 +459,8 @@ id: integer
 
 ```
 {
-  status: 401,
-  message: ['UnAuthorized']
+  status: 403,
+  message: ['Forbidden - Access is denied']
 }
 ```
 
