@@ -109,6 +109,19 @@ export default {
         headers: {access_token: localStorage.getItem('access_token')}
       })
       .then(({data}) => {
+        const listDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        let update;
+        const allTasks = data.map(task => {
+          let updateDate = new Date(task.updatedAt)
+          const day = listDay[updateDate.getDay()]
+          const year = updateDate.getFullYear();
+          let month = updateDate.getMonth() + 1;
+          let date = updateDate.getDate();
+          (month < 10) ? month = `0${month}` : month;
+          (date < 10) ? date = `0${date}` : date;
+          update = `${day}, ${year}-${month}-${date}`
+          task.update = update
+        })
        this.tasks = data
       })
       .catch(err => console.log(err, 'from fetchTasks'))

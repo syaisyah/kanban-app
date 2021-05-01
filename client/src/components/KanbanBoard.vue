@@ -51,24 +51,16 @@ export default {
   props: ["dataTasks"],
   computed: {
     filteredBackLog() {
-      return this.dataTasks.filter(
-        (task) => task.category.toLowerCase() === "backlog"
-      );
+      return this.dataTasks.filter((task) => task.category.toLowerCase() === "backlog");
     },
     filteredTodo() {
-      return this.dataTasks.filter(
-        (task) => task.category.toLowerCase() === "todo"
-      );
+      return this.dataTasks.filter((task) => task.category.toLowerCase() === "todo");
     },
     filteredDoing() {
-      return this.dataTasks.filter(
-        (task) => task.category.toLowerCase() === "doing"
-      );
+      return this.dataTasks.filter((task) => task.category.toLowerCase() === "doing");
     },
     filteredDone() {
-      return this.dataTasks.filter(
-        (task) => task.category.toLowerCase() === "done"
-      );
+      return this.dataTasks.filter((task) => task.category.toLowerCase() === "done");
     },
   },
   methods: {

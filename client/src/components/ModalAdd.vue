@@ -1,23 +1,22 @@
 <template>
   <section>
-    <b-modal id="modal-1" title="Add Task" hide-footer>
+    <b-modal id="modal-add" title="Add Task" hide-footer>
       <div>
         <form>
           <div class="mb-3">
-            <label for="title-task" class="form-label">Title</label>
+            <label for="titleTask" class="form-label">Title</label>
             <input type="text" class="form-control" v-model="titleTask">
           </div>
           <div class="mb-3">
-            <label for="add-category-task" class="form-label">Category</label>
-            <select id="add-category-task" class="form-select w-100" style="height: 40px" disabled>
-              <option>Backlog</option>
-            </select>
+            <label for="categoryTask" class="form-label">Category</label>
+             <b-form-select v-model="categoryTask" :options="options" disabled></b-form-select>
           </div>
         </form>
       </div>
       <div class="my-3 d-flex justify-content-end">
         <div slot="modal-footer">
-        <b-button variant="info" @click.prevent="createTask">Submit</b-button>
+          <b-button variant="warning" @click="$bvModal.hide('modal-add')">Close</b-button>
+          <b-button variant="info" @click.prevent="createTask">Submit</b-button>
       </div>
       
     </b-modal>
@@ -29,14 +28,16 @@
     name: "ModalAdd",
     data() {
       return {
-        category: 'Backlog',
-        titleTask: ''
+        titleTask: '',
+        categoryTask: 'Backlog',
+        options: [
+          { value: 'Backlog', text: 'Backlog', disabled: true },
+        ]
       }
     },
     methods: {
      createTask() {
-       const newTask = { title: this.titleTask, category: this.category}
-       console.log(this.category, 'hit submit modal>>>>>>>')
+       const newTask = { title: this.titleTask, category: this.categoryTask}
        this.$emit('emitCreateTask', newTask)
      },
    
