@@ -7,6 +7,8 @@
       :dataTasks="tasks"
       @emitCreateTask="createTask"
       @emitDestroy="destroy"
+      @emitGetDetailTask="getDetailTask"
+      :detailTask="objTask"
     ></Home> 
   </div>
 </template>
@@ -31,6 +33,7 @@ export default {
     return {
      page: 'login',
      tasks: [],
+     objTask: {}
     }
   },
 
@@ -161,31 +164,42 @@ export default {
       })
       .then((result) => {
         if (result.isConfirmed) {
-      
-        axios({
-          url: baseUrl + '/tasks/' + id,
-          method: "DELETE",
-          headers: {access_token: localStorage.getItem('access_token')}
-        })
-        .then(response => {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-        )
-        this.checkLocalStroge()
-        })
-        .catch(err => {
-          const {status, message } = err.response.data
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: `${status} - ${message}`
+          axios({
+            url: baseUrl + '/tasks/' + id,
+            method: "DELETE",
+            headers: {access_token: localStorage.getItem('access_token')}
           })
-        })
-      }
-})
+          .then(response => {
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+          )
+          this.checkLocalStroge()
+          })
+          .catch(err => {
+            const {status, message } = err.response.data
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: `${status} - ${message}`
+            })
+          })
+        }
+      })
     },
+
+    getDetailTask(id) {
+      axios({
+        url: baseUrl + '/tasks/' + id,
+        method: "GET",
+        headers: { access_token: localStorage.getItem("access_token") },
+      })
+      .then(({ data }) => {
+        this.objTask = data;
+      })
+      .catch(err => console.log(err, 'getDetail error'))
+    }
   }
 }
 </script>

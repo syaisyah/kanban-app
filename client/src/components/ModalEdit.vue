@@ -5,11 +5,11 @@
         <form>
           <div class="mb-3">
             <label for="titleTaskEdit" class="form-label">Title</label>
-            <input type="text" class="form-control" v-model="titleTaskEdit">
+            <input type="text" class="form-control" v-model="detailTask.title" :placeholder="detailTask.title">
           </div>
           <div class="mb-3">
             <label for="categoryTaskEdit" class="form-label">Category</label>
-            <b-form-select v-model="category" :options="options"></b-form-select>
+            <b-form-select v-model="detailTask.category" :options="options"></b-form-select>
           </div>
         </form>
       </div>
@@ -40,12 +40,13 @@
         ]
       }
     },
+    props: ["detailTask", "detailTask"],
     methods: {
       editTask() {
-        console.log(this.category)
+        console.log(this.titleTaskEdit, '>>>>>>>>')
       }
-   
-    }
+    },
+  
   }
 </script>
 

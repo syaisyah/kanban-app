@@ -8,7 +8,7 @@
       <h6 class="card-subtitle my-2 text-muted">by: {{ task.User.email }} </h6>
       <h6 class="card-subtitle my-2 text-muted">last Updated: {{ task.update }}</h6>
       <div class="d-flex justify-content-end my-0">
-         <b-button v-b-modal.modal-edit class="btn btn-light"><i class="fas fa-marker"></i></b-button>
+         <b-button v-b-modal.modal-edit class="btn btn-light" @click.prevent="getDetailTask(task.id)"><i class="fas fa-marker"></i></b-button>
         <button type="button" class="btn btn-primary-outline" @click.prevent="destroy(task.id)"><i class="fas fa-trash"></i></button>
       </div>
     </div>
@@ -22,6 +22,9 @@ export default {
   methods: {
     destroy(id) {
       this.$emit('emitDestroy', id)
+    },
+    getDetailTask(id) {
+      this.$emit('emitGetDetailTask', id)
     }
   }
 }

@@ -4,9 +4,12 @@
       <KanbanBoard 
        :dataTasks="dataTasks"
        @emitDestroy="destroy"
+       @emitGetDetailTask="getDetailTask"
       ></KanbanBoard>
-      <ModalAdd @emitCreateTask="createTask"></ModalAdd>
-      <ModalEdit></ModalEdit>
+      <ModalAdd 
+        @emitCreateTask="createTask"
+      ></ModalAdd>
+      <ModalEdit  :detailTask="detailTask"></ModalEdit>
    </section>
 </template>
 
@@ -24,13 +27,16 @@ export default {
     ModalAdd,
     ModalEdit
   },
-  props: ["dataTasks"],
+  props: ["dataTasks", "detailTask"],
   methods: {
     createTask(task) {
       this.$emit('emitCreateTask', task)
     },
     destroy(id) {
       this.$emit('emitDestroy', id)
+    },
+    getDetailTask(id) {
+      this.$emit('emitGetDetailTask', id)
     }
   }
 }

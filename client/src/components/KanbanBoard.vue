@@ -12,6 +12,7 @@
           <KanbanCard 
             :filteredTask="filteredBackLog"
             @emitDestroy="destroy"
+            @emitGetDetailTask="getDetailTask"
           ></KanbanCard>
           <!--End Card-->
         </div>
@@ -20,6 +21,7 @@
             <KanbanCard 
             :filteredTask="filteredTodo"
             @emitDestroy="destroy"
+            @emitGetDetailTask="getDetailTask"
           ></KanbanCard>
         </div>
         <div class="col-3 category mx-1 overflow-auto p-3">
@@ -27,6 +29,7 @@
            <KanbanCard 
             :filteredTask="filteredDoing"
             @emitDestroy="destroy"
+            @emitGetDetailTask="getDetailTask"
           ></KanbanCard>
         </div>
         <div class="col-3 category mx-1 overflow-auto p-3">
@@ -34,6 +37,7 @@
            <KanbanCard 
             :filteredTask="filteredDone"
             @emitDestroy="destroy"
+            @emitGetDetailTask="getDetailTask"
           ></KanbanCard>
         </div>
         <!---->
@@ -66,6 +70,9 @@ export default {
   methods: {
     destroy(id) {
       this.$emit('emitDestroy', id)
+    },
+    getDetailTask(id) {
+      this.$emit('emitGetDetailTask', id)
     }
   }
 }
