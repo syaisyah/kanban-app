@@ -1,13 +1,15 @@
 <template>
   <section>
-    <div class="row">
+    <div class="row" style="margin-top: 50px">
         <div class="my-4 text-center w-100">
           <h1><b>Kanban Application</b></h1>
           </div>
       </div>
       <div class="d-flex justify-content-start" style="margin: 0px 250px 100px; height: 70vh">
-        <div class="col-3 category mx-1 overflow-auto p-3">
-          <h4 class="text-center">Backlog</h4>
+        <div class="col-3 category overflow-auto p-0 mx-1">
+          <div class="sticky-top bg-warning">
+          <h4 class="text-center py-1 mb-0">Backlog</h4>
+        </div>
           <!--Card-->
           <KanbanCard 
             :filteredTask="filteredBackLog"
@@ -16,24 +18,30 @@
           ></KanbanCard>
           <!--End Card-->
         </div>
-        <div class="col-3 category mx-1 overflow-auto p-3">
-          <h4 class="text-center">Todo</h4>
+        <div class="col-3 category overflow-auto p-0 mx-1">
+          <div class="sticky-top bg-warning">
+          <h4 class="text-center py-1 mb-0">Todo</h4>
+        </div>
             <KanbanCard 
             :filteredTask="filteredTodo"
             @emitDestroy="destroy"
             @emitGetDetailTask="getDetailTask"
           ></KanbanCard>
         </div>
-        <div class="col-3 category mx-1 overflow-auto p-3">
-          <h4 class="text-center">Doing</h4>
+        <div class="col-3 category overflow-auto p-0 mx-1">
+          <div class="sticky-top bg-warning">
+          <h4 class="text-center py-1 mb-0">Doing</h4>
+        </div>
            <KanbanCard 
             :filteredTask="filteredDoing"
             @emitDestroy="destroy"
             @emitGetDetailTask="getDetailTask"
           ></KanbanCard>
         </div>
-        <div class="col-3 category mx-1 overflow-auto p-3">
-          <h4 class="text-center">Done</h4>
+        <div class="col-3 category overflow-auto p-0 mx-1">
+          <div class="sticky-top bg-warning">
+          <h4 class="text-center py-1 mb-0">Done</h4>
+        </div>
            <KanbanCard 
             :filteredTask="filteredDone"
             @emitDestroy="destroy"
@@ -85,8 +93,11 @@ export default {
   background-color: white;
 }
 
-h1, h4 {
+h1 {
   color: rgb(194, 119, 150);
 }
+
+
+
 
 </style>

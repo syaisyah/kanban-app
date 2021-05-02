@@ -1,6 +1,6 @@
 <template>
   <section>
-    <nav class="navbar navbar-expand-lg w-100">
+    <nav class="navbar navbar-expand-lg w-100 fixed-top">
       <div class="d-flex justify-content-between w-100 px-2">
         <button class="btn btn-light" @click.prevent="logout">Log out</button>
         <b-button v-b-modal.modal-add class="btn btn-warning">Add Task</b-button>

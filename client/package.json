@@ -15,7 +15,8 @@
     "bootstrap-vue": "^2.21.2",
     "sweetalert2": "^10.16.6",
     "vue": "^2.6.12",
-    "vue-hot-reload-api": "^2.3.4"
+    "vue-hot-reload-api": "^2.3.4",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.2.0",

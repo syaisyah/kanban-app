@@ -9,7 +9,10 @@
       <ModalAdd 
         @emitCreateTask="createTask"
       ></ModalAdd>
-      <ModalEdit  :detailTask="detailTask"></ModalEdit>
+      <ModalEdit  
+        :detailTask="detailTask"
+        @emitEditTask="editTask"
+      ></ModalEdit>
    </section>
 </template>
 
@@ -37,6 +40,9 @@ export default {
     },
     getDetailTask(id) {
       this.$emit('emitGetDetailTask', id)
+    },
+    editTask(task) {
+      this.$emit('emitEditTask', task)
     }
   }
 }

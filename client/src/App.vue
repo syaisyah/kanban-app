@@ -9,6 +9,7 @@
       @emitDestroy="destroy"
       @emitGetDetailTask="getDetailTask"
       :detailTask="objTask"
+      @emitEditTask="editTask"
     ></Home> 
   </div>
 </template>
@@ -73,7 +74,12 @@ export default {
         this.checkLocalStroge()
       })
       .catch(err => {
-        console.log(err, 'err login >>>>>')
+        const {status, message } = err.response.data
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${status} (${err.response.statusText}) - ${message}`
+        })
       })
       .finally(_ => {
         this.email = "";
@@ -97,7 +103,14 @@ export default {
         )
         this.page = 'login'
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        const {status, message } = err.response.data
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${status} (${err.response.statusText}) - ${message}`
+        })
+      })
       .finally(_ => {
         this.full_name = ''; 
         this.email= '';
@@ -113,21 +126,25 @@ export default {
       })
       .then(({data}) => {
         const listDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        const listMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
         let update;
         const allTasks = data.map(task => {
           let updateDate = new Date(task.updatedAt)
           const day = listDay[updateDate.getDay()]
           const year = updateDate.getFullYear();
-          let month = updateDate.getMonth() + 1;
+          let month = listMonth[updateDate.getMonth()]
           let date = updateDate.getDate();
-          (month < 10) ? month = `0${month}` : month;
           (date < 10) ? date = `0${date}` : date;
-          update = `${day}, ${year}-${month}-${date}`
+          update = `${day}, ${date} ${month} ${year}`
           task.update = update
         })
        this.tasks = data
       })
-      .catch(err => console.log(err, 'from fetchTasks'))
+      .catch(err => {
+         const { status, message } = err.response.data
+         let errorMessage = `${status} (${err.response.statusText}) - ${message}`
+         console.log(errorMessage)
+      })
     },
 
     createTask(task) {
@@ -198,7 +215,31 @@ export default {
       .then(({ data }) => {
         this.objTask = data;
       })
-      .catch(err => console.log(err, 'getDetail error'))
+      .catch(err => {
+         const { status, message } = err.response.data
+         let errorMessage = `${status} (${err.response.statusText}) - ${message}`
+         console.log(errorMessage)
+      })
+    },
+    editTask(task) {
+      const { id, title, category } = task;
+      axios({
+        url: baseUrl + '/tasks/' + id,
+        method: "PUT",
+        data: { title, category },
+        headers: { access_token: localStorage.getItem("access_token") }
+      })
+      .then(({data}) => {
+        this.checkLocalStroge()
+      })
+      .catch(err => {
+        const {status, message } = err.response.data
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${status} (${err.response.statusText}) - ${message}`
+          })
+      })
     }
   }
 }
@@ -206,9 +247,12 @@ export default {
 
 <style>
 body {
-  background-image: url('../assets/bg-1.jpeg');
+  background-image: url('../assets/bg-2.jpeg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  width: 100%;
+  height: 100vh
 }
+
 </style>

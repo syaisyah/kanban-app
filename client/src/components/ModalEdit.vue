@@ -16,7 +16,7 @@
       <div class="my-3 d-flex justify-content-end">
         <div slot="modal-footer">
           <b-button variant="warning" @click="$bvModal.hide('modal-edit')">Close</b-button>
-          <b-button variant="info" @click.prevent="editTask">Save</b-button>
+          <b-button variant="info" @click.prevent="editTask(detailTask.id)">Save</b-button>
       </div>
       
     </b-modal>
@@ -28,8 +28,6 @@
     name: "ModalEdit",
     data() {
       return {
-       titleTaskEdit: "",
-       categoryTaskEdit: "",
        category: null,
         options: [
           { value: null, text: 'Please select an option' },
@@ -42,8 +40,9 @@
     },
     props: ["detailTask", "detailTask"],
     methods: {
-      editTask() {
-        console.log(this.titleTaskEdit, '>>>>>>>>')
+      editTask(id) {
+        const task = { id, title: this.detailTask.title, category: this.detailTask.category }
+        this.$emit('emitEditTask', task)
       }
     },
   
