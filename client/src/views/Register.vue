@@ -1,6 +1,6 @@
 <template>
   <section>
-      <div class="row justify-content-center p-5" style="margin-top: 120px;">
+      <div class="row justify-content-center p-5" style="margin-top: 100px;">
         <div class="w-25 border shadow-lg register">
           <h1 class="text-center pt-5">Kanban</h1>
           <h4 class="text-center" style="color: rgb(112, 110, 110)"><b>Register</b></h4>
