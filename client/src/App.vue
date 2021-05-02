@@ -10,6 +10,7 @@
       @emitGetDetailTask="getDetailTask"
       :detailTask="objTask"
       @emitEditTask="editTask"
+      @emitUpdateCategory="updateCategory"
     ></Home> 
   </div>
 </template>
@@ -148,6 +149,7 @@ export default {
     },
 
     createTask(task) {
+      const { title, category } = task;
       axios({
         url: baseUrl + '/tasks',
         method: "POST",
@@ -167,6 +169,9 @@ export default {
             title: 'Oops...',
             text: `${status} (${err.response.statusText}) - ${message}`
         })
+      })
+      .finally(_ => {
+         this.title = "";
       })
     },
 
@@ -230,6 +235,26 @@ export default {
         headers: { access_token: localStorage.getItem("access_token") }
       })
       .then(({data}) => {
+        this.checkLocalStroge()
+      })
+      .catch(err => {
+        const {status, message } = err.response.data
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${status} (${err.response.statusText}) - ${message}`
+          })
+      })
+    },
+
+     updateCategory(task) {
+      axios({
+        url: `${baseUrl}/tasks/${task.id}`,
+        method: "PATCH",
+        data: { category: task.category },
+        headers: { access_token: localStorage.getItem("access_token")}
+      })
+      .then(response => {
         this.checkLocalStroge()
       })
       .catch(err => {

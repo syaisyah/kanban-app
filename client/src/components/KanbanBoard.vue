@@ -8,45 +8,48 @@
       <div class="d-flex justify-content-start" style="margin: 0px 250px 100px; height: 70vh">
         <div class="col-3 category overflow-auto p-0 mx-1">
           <div class="sticky-top bg-warning">
-          <h4 class="text-center py-1 mb-0">Backlog</h4>
-        </div>
-          <!--Card-->
+            <h4 class="text-center py-1 mb-0">Backlog</h4>
+          </div>
           <KanbanCard 
             :filteredTask="filteredBackLog"
             @emitDestroy="destroy"
             @emitGetDetailTask="getDetailTask"
+            @emitUpdateCategory="updateCategory"
           ></KanbanCard>
-          <!--End Card-->
         </div>
         <div class="col-3 category overflow-auto p-0 mx-1">
           <div class="sticky-top bg-warning">
-          <h4 class="text-center py-1 mb-0">Todo</h4>
-        </div>
-            <KanbanCard 
+            <h4 class="text-center py-1 mb-0">Todo</h4>
+          </div>
+          <KanbanCard 
             :filteredTask="filteredTodo"
             @emitDestroy="destroy"
             @emitGetDetailTask="getDetailTask"
+            @emitUpdateCategory="updateCategory"
           ></KanbanCard>
         </div>
         <div class="col-3 category overflow-auto p-0 mx-1">
           <div class="sticky-top bg-warning">
-          <h4 class="text-center py-1 mb-0">Doing</h4>
-        </div>
-           <KanbanCard 
+            <h4 class="text-center py-1 mb-0">Doing</h4>
+          </div>
+          <KanbanCard 
             :filteredTask="filteredDoing"
             @emitDestroy="destroy"
             @emitGetDetailTask="getDetailTask"
+            @emitUpdateCategory="updateCategory"
           ></KanbanCard>
         </div>
         <div class="col-3 category overflow-auto p-0 mx-1">
           <div class="sticky-top bg-warning">
-          <h4 class="text-center py-1 mb-0">Done</h4>
-        </div>
-           <KanbanCard 
+            <h4 class="text-center py-1 mb-0">Done</h4>
+          </div>
+          <KanbanCard 
             :filteredTask="filteredDone"
             @emitDestroy="destroy"
             @emitGetDetailTask="getDetailTask"
+            @emitUpdateCategory="updateCategory"
           ></KanbanCard>
+     
         </div>
         <!---->
       </div>
@@ -55,10 +58,11 @@
 
 <script>
 import KanbanCard from './KanbanCard'
+
 export default {
   name: "KanbanBoard",
   components: {
-    KanbanCard
+    KanbanCard,
   },
   props: ["dataTasks"],
   computed: {
@@ -81,6 +85,9 @@ export default {
     },
     getDetailTask(id) {
       this.$emit('emitGetDetailTask', id)
+    },
+    updateCategory(task) {
+      this.$emit('emitUpdateCategory', task)
     }
   }
 }

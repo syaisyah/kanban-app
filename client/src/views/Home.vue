@@ -5,6 +5,7 @@
        :dataTasks="dataTasks"
        @emitDestroy="destroy"
        @emitGetDetailTask="getDetailTask"
+       @emitUpdateCategory="updateCategory"
       ></KanbanBoard>
       <ModalAdd 
         @emitCreateTask="createTask"
@@ -43,6 +44,9 @@ export default {
     },
     editTask(task) {
       this.$emit('emitEditTask', task)
+    },
+    updateCategory(task) {
+      this.$emit('emitUpdateCategory', task)
     }
   }
 }

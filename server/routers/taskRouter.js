@@ -9,8 +9,7 @@ router.get('/', TaskController.findAllTask)
 router.get('/:id', TaskController.getTaskById)
 
 router.put('/:id', authorization, TaskController.updateTask)
-router.patch('/next/:id', authorization, TaskController.nextCategory)
-router.patch('/back/:id', authorization, TaskController.backCategory)
+router.patch('/:id', authorization, TaskController.updateCategory)
 router.delete('/:id', authorization, TaskController.deleteTaskById)
 
 

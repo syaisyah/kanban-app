@@ -268,10 +268,10 @@ id: integer
 }
 ```
 
-> 5. PATCH /tasks/next/:id
+> 5. Update Category Task
 
 ```
-Update category task with specific id
+Update task with specific id
 URL: /tasks/:id
 Method: PATCH
 Required Authentication: Yes
@@ -292,8 +292,7 @@ id: integer
 }
 ```
 
-- Success Response:
-
+- Success Response: 200 OK
 ```
 -Status: 200 OK
 - Response Body
@@ -307,62 +306,7 @@ id: integer
 }
 ```
 
-- Note
-
-```
-1. If current category = 'Backlog', update category = 'Todo'
-2. If current category = 'Todo', update category = 'Doing'
-3. If current category = 'Doing', update category = 'Done'
-```
-
-> 6. PATCH /tasks/back/:id
-
-```
-Update category task with specific id
-URL: /tasks/:id
-Method: PATCH
-Required Authentication: Yes
-Required Authorization: Yes (only if the task belongs to logged in user)
-```
-
-- Params
-
-```
-id: integer
-```
-
-- Request Headers:
-
-```
-{
-  access_token: "access_token"
-}
-```
-
-- Success Response:
-
-```
--Status: 200 OK
-- Response Body
-{
-    id: "<task id from system>",
-    title: "<task title from system>",
-    category: "<new category task>",
-    UserId: "<id from loggin user>",
-    createdAt: "<created date from system>",
-    updatedAt: "<last updated date category from system>",
-}
-```
-
-- Note
-
-```
-1. If current category = 'Done', update category = 'Doing'
-2. If current category = 'Doing', update category = 'Todo'
-3. If current category = 'Todo', update category = 'Backlog'
-```
-
-> 7. Delete Task
+> 6. Delete Task
 
 ```
 Delete task with specific id
