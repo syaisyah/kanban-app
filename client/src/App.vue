@@ -35,7 +35,7 @@ export default {
     return {
      page: 'login',
      tasks: [],
-     objTask: {}
+     objTask: {},
     }
   },
 
@@ -59,7 +59,6 @@ export default {
       this.page = 'login'
     },
     login(user) {
-      console.log(user, 'masuk login')
       axios({
         url: baseUrl + '/users/login',
         method: "POST",

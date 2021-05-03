@@ -1,7 +1,7 @@
 <template>
   <div class="p-3">
     <draggable :list="filteredTask" group="task" :move="onMove" @start="drag=true" @end="updateCategory">
-      <div class="card col-12 shadow-lg my-2 p-3 bg-light border border-warning"  
+      <div class="card col-12 shadow-lg p-3 bg-light border border-warning"  
         v-for="task in filteredTask"
         :key="task.id"
         :task="task"

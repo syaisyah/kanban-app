@@ -1,7 +1,7 @@
 <template>
   <section>
       <div class="row justify-content-center p-5" style="margin-top: 120px;">
-        <div class="w-25 border shadow-lg login">
+        <div class="w-25 border shadow-lg login pb-5">
           <h1 class="text-center pt-5">Kanban</h1>
           <h4 class="text-center" style="color: rgb(112, 110, 110)"><b>Login</b></h4>
           <form>
@@ -14,14 +14,10 @@
               <input type="password" class="form-control" placeholder="Password" v-model="passwordLogin" />
             </div>
             <div class="m-4">
-              <div class="d-flex justify-content-center">
+              <div class="d-flex justify-content-center mt-4">
                 <button type="submit" class="btn btn-primary w-100" @click.prevent="login">Login</button>
                 <button type="submit" class="btn btn-warning w-100" @click.prevent="showFormRegister">Register</button>
               </div>
-            </div>
-            <div class="m-5 text-center">
-              <p>OR Login with Google Account</p>
-              <button type="submit" class="btn btn-primary">Google Login</button>
             </div>
           </form>
         </div>
@@ -30,6 +26,7 @@
 </template>
 
 <script>
+
 export default {
   name: "Login",
   data () {
@@ -45,7 +42,7 @@ export default {
    },
    showFormRegister() {
      this.$emit('emitFormRegister')
-   }
+   }, 
   }
 }
 </script>

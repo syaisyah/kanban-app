@@ -32,30 +32,30 @@ class UserController {
       })
   }
 
-  // static googleLogin(req, res, next) {
-  //   const client = new OAuth2Client(process.env.CLIENT_ID);
-  //   async function verify() {
-  //     const ticket = await client.verifyIdToken({
-  //       idToken: req.body.googleToken,
-  //       audience: process.env.CLIENT_ID,
-  //     });
-  //     const payload = ticket.getPayload();
-  //     User.findOrCreate({
-  //       where: { email: payload.email },
-  //       defaults: {
-  //         email: payload.email,
-  //         password: process.env.USER_PASSWORD_GOOGLE_SIGIN
-  //       }
-  //     })
-  //       .then(user => {
-  //         let payload = { id: user[0].id, email: user[0].email }
-  //         let access_token = generateToken(payload)
-  //         res.status(200).json({ access_token, email: user[0].email })
-  //       })
-  //       .catch(err => next(err))
-  //   }
-  //   verify().catch(console.error);
-  // }
+  static googleLogin(req, res, next) {
+    const client = new OAuth2Client(process.env.CLIENT_ID);
+    async function verify() {
+      const ticket = await client.verifyIdToken({
+        idToken: req.body.googleToken,
+        audience: process.env.CLIENT_ID,
+      });
+      const payload = ticket.getPayload();
+      User.findOrCreate({
+        where: { email: payload.email },
+        defaults: {
+          email: payload.email,
+          password: process.env.PASSWORD_GOOGLE_LOGIN_KANBAN
+        }
+      })
+        .then(user => {
+          let payload = { id: user[0].id, email: user[0].email }
+          let access_token = generateToken(payload)
+          res.status(200).json({ access_token, email: user[0].email })
+        })
+        .catch(err => next(err))
+    }
+    verify().catch(console.error);
+  }
 
 
 }
