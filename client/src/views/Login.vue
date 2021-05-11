@@ -20,6 +20,10 @@
               </div>
             </div>
           </form>
+          <div class="m-4 text-center">
+            <p>OR Login with Google Account</p>
+            <button v-google-signin-button="clientId" class="google-signin-button btn btn-info w-100"><i class="fab fa-google"></i> Continue with google</button>
+          </div>
         </div>
       </div>
     </section>
@@ -33,16 +37,23 @@ export default {
     return {
       emailLogin: '',
       passwordLogin: '',
+      clientId: '498078366327-u8eot5u8odq4u1rutdh4fnvhtur35a7h.apps.googleusercontent.com'
     }
   },
   methods: {
-   login() {
-     const user = { email: this.emailLogin, password: this.passwordLogin }
-     this.$emit('emitLogin', user)
-   },
-   showFormRegister() {
-     this.$emit('emitFormRegister')
-   }, 
+    login() {
+      const user = { email: this.emailLogin, password: this.passwordLogin }
+      this.$emit('emitLogin', user)
+    },
+    showFormRegister() {
+      this.$emit('emitFormRegister')
+    }, 
+    OnGoogleAuthSuccess (idToken) {
+      this.$emit('emitGoogle', idToken)
+    },
+    OnGoogleAuthFail (error) {
+      console.log(error, 'error')
+    }
   }
 }
 </script>
@@ -51,5 +62,4 @@ export default {
 .login {
   background-color: white;
 }
-
 </style>

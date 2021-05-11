@@ -8,6 +8,4 @@ router.post('/googleLogin', UserController.googleLogin)
 
 
 
-
-
 module.exports = router

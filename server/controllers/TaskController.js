@@ -7,7 +7,7 @@ class TaskController {
     const UserId = req.logginUser.id
     const newTask = {
       title: req.body.title,
-      category: 'Backlog',
+      category: req.body.category,
       UserId
     };
 

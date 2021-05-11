@@ -44,12 +44,9 @@ export default {
     onMove(e) {
       this.idTask = e.draggedContext.element.id;
       this.categoryAfter = e.relatedContext.element.category;
-      console.log(this.idTask, this.categoryAfter, 'from onMove method')
-      console.log(e, 'event >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
     },
     updateCategory() {
       const task = { id: this.idTask, category: this.categoryAfter }
-      console.log(task, '>>>>>>. task kanbanCard')
       this.$emit('emitUpdateCategory', task)
     }
   }

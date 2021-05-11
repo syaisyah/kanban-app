@@ -24,10 +24,15 @@
               </div>
             </div>
           </form>
+          <div class="m-4 text-center">
+            <p>OR Login with Google Account</p>
+            <button v-google-signin-button="clientId" class="google-signin-button btn btn-info w-100"><i class="fab fa-google"></i> Continue with google</button>
+          </div>
         </div>
       </div>
     </section>
 </template>
+
 
 <script>
 export default {
@@ -36,7 +41,8 @@ export default {
     return {
       fullName: '',
       emailRegister: '',
-      passwordRegister: ''
+      passwordRegister: '',
+      clientId: '498078366327-u8eot5u8odq4u1rutdh4fnvhtur35a7h.apps.googleusercontent.com'
     }
   },
   methods: {
@@ -50,6 +56,12 @@ export default {
     },
     showFormLogin() {
       this.$emit('emitFormLogin')
+    },
+     OnGoogleAuthSuccess (idToken) {
+      this.$emit('emitGoogleFromRegister', idToken)
+    },
+    OnGoogleAuthFail (error) {
+      console.log(error, 'error')
     }
   }
 }
@@ -59,6 +71,4 @@ export default {
 .register {
   background-color: white;
 }
-
-
 </style>

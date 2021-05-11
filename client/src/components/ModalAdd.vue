@@ -9,7 +9,7 @@
           </div>
           <div class="mb-3">
             <label for="categoryTask" class="form-label">Category</label>
-             <b-form-select v-model="categoryTask" :options="options" disabled></b-form-select>
+             <b-form-select v-model="categoryTask" :options="options"></b-form-select>
           </div>
         </form>
       </div>
@@ -29,9 +29,13 @@
     data() {
       return {
         titleTask: '',
-        categoryTask: 'Backlog',
-        options: [
-          { value: 'Backlog', text: 'Backlog', disabled: true },
+        categoryTask: null,
+         options: [
+          { value: null, text: 'Please select an option' },
+          { value: 'Backlog', text: 'Backlog' },
+          { value: 'Todo', text: 'Todo' },
+          { value: 'Doing', text: 'Doing' },
+          { value: 'Done', text: 'Done' },
         ]
       }
     },

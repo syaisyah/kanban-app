@@ -1,7 +1,15 @@
 <template>
   <div>
-    <Login v-if="page === 'login'" @emitLogin="login" @emitFormRegister="showFormRegister"></Login>
-    <Register v-else-if="page === 'register'" @emitRegister="register" @emitFormLogin="showFormLogin"></Register>
+    <Login v-if="page === 'login'" 
+      @emitLogin="login" 
+      @emitFormRegister="showFormRegister"
+      @emitGoogle="googleLogin"   
+    ></Login>
+    <Register v-else-if="page === 'register'" 
+      @emitRegister="register" 
+      @emitFormLogin="showFormLogin"
+      @emitGoogleFromRegister="googleLogin"
+    ></Register>
     <Home 
       v-else-if="page === 'home'"
       :dataTasks="tasks"
@@ -21,7 +29,7 @@ import Register from './views/Register';
 import Login from './views/Login';
 import Home from './views/Home';
 
-const baseUrl = `http://localhost:3000`
+const baseUrl = `http://localhost:3001`
 
 export default {
   name: "app",
@@ -85,6 +93,18 @@ export default {
         this.email = "";
         this.password = "";
       })
+    },
+    googleLogin(idToken) {
+      axios({
+        url:baseUrl + '/users/googleLogin',
+        method: "POST",
+        data: { googleToken: idToken}
+      })
+      .then(response => {
+        localStorage.setItem('access_token', response.data.access_token)
+        this.checkLocalStroge()
+      })
+      .catch(err => console.log(err))
     },
     register(user) {
       const { full_name, email, password } = user;
@@ -159,6 +179,7 @@ export default {
           Swal.fire(
             'Create Task Success'
           )
+          
         this.checkLocalStroge()
         })
       .catch(err => {
@@ -170,7 +191,8 @@ export default {
         })
       })
       .finally(_ => {
-         this.title = "";
+        this.title = "";
+        this.category = null;
       })
     },
 
@@ -271,12 +293,11 @@ export default {
 
 <style>
 body {
-  background-image: url('../assets/bg-2.jpeg');
+  background-image: url('./assets/bg-2.jpeg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   width: 100%;
   height: 100vh
 }
-
 </style>

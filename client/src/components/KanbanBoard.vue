@@ -3,7 +3,7 @@
     <div class="row" style="margin-top: 50px">
         <div class="my-4 text-center w-100">
           <h1><b>Kanban Application</b></h1>
-          </div>
+        </div>
       </div>
       <div class="d-flex justify-content-start" style="margin: 0px 250px 100px; height: 70vh">
         <div class="col-3 category overflow-auto p-0 mx-1">
@@ -51,7 +51,6 @@
           ></KanbanCard>
      
         </div>
-        <!---->
       </div>
   </section>
 </template>

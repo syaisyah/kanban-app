@@ -3,7 +3,6 @@ const { verifyToken } = require('../helpers/token-helper')
 const errorHandler = require('./errorHandler')
 
 
-
 const authentication = (req, res, next) => {
   try {
     let decode = verifyToken(req.headers.access_token)
@@ -22,6 +21,7 @@ const authentication = (req, res, next) => {
     next(err)
   }
 }
+
 
 const authorization = (req, res, next) => {
   let idTask = +req.params.id;

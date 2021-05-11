@@ -7,7 +7,7 @@ Kanban Application
 # URL
 
 ```
-http://localhost:3000
+http://localhost:3001
 ```
 
 # HTTP Method:
@@ -139,7 +139,7 @@ Required Authorization: No
 ```
 {
   title: "<task title>",
-  category: "Backlog",
+  category: "<task category>",
 }
 ```
 

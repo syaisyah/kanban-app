@@ -43,6 +43,7 @@ class UserController {
       User.findOrCreate({
         where: { email: payload.email },
         defaults: {
+          full_name: payload.name,
           email: payload.email,
           password: process.env.PASSWORD_GOOGLE_LOGIN_KANBAN
         }

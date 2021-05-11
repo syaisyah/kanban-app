@@ -26,3 +26,8 @@ https://vuejs.org/v2/guide/installation.html
    # Shorthand
   - v-bind ---> :
   - v-on ----> @
+
+  # running client : 
+  ```
+  parcel index.html
+  ```
