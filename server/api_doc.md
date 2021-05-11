@@ -102,6 +102,13 @@ Required Authentication: No
 Required Authorization: No
 ```
 
+- Request body:
+
+```
+{
+  googleToken: "<idToken>"
+}
+```
 - Success Response
 
 ```
