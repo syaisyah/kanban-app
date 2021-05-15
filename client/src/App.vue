@@ -24,12 +24,13 @@
 </template>
 
 <script>
+const baseUrl = 'https://kanban-task-server.herokuapp.com'
+
 import axios from 'axios';
 import Register from './views/Register';
 import Login from './views/Login';
 import Home from './views/Home';
 
-const baseUrl = 'https://kanban-task-server.herokuapp.com'
 
 
 export default {
