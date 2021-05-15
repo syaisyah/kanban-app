@@ -1,3 +1,3 @@
 # kanban-app
 Link deploy application:
-https://kanban-task-client.web.app
+https://kanban-client-task.web.app
