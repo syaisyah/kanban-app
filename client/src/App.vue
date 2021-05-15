@@ -29,7 +29,7 @@ import Register from './views/Register';
 import Login from './views/Login';
 import Home from './views/Home';
 
-const baseUrl = `http://localhost:3001`
+const baseUrl = `https://kanban-task-server.herokuapp.com`
 
 export default {
   name: "app",
