@@ -8,6 +8,8 @@ Kanban Application
 
 ```
 http://localhost:3000
+https://kanban-client-task.web.app
+https://kanban-client-task.firebaseapp.com
 ```
 
 # HTTP Method:
